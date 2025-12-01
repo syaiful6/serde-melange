@@ -1,0 +1,3 @@
+(library
+ (name serde_melange)
+ (public_name serde-melange))
