@@ -38,24 +38,20 @@ let
       inherit root;
       include = [ "dune-project" ] ++ files ++ [ (mkDirMatcher dirs) ];
     };
-  buildProject = args: buildDunePackage ({
+  buildSerde = args: buildDunePackage ({
     version = "0.1.0";
     doCheck = doCheck;
     duneVersion = "3";
-    nativeBuildInputs = [ pkgs.pkg-config ];
-    buildInputs = [ pkgs.openssl ];
+    nativeBuildInputs = [ melange ];
     checkInputs = [ alcotest ];
-    PKG_CONFIG_PATH = pkgs.lib.makeSearchPath "lib/pkgconfig" [
-      pkgs.openssl
-    ];
   } // args);
   in
 
   {
-    serde-melange = buildProject {
+    serde-melange = buildSerde {
       pname = "serde-melange";
       src = genSrc {
-        dirs = [ "src" "ppx" ];
+        dirs = [ "src" "derive" ];
         files = [ "serde-melange.opam" ];
       };
       propagatedBuildInputs = [
