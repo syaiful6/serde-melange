@@ -1,3 +1,8 @@
+(dirs :standard __test__)
+
 (library
- (name serde_melange)
- (public_name serde-melange))
+ (name serde)
+ (public_name serde-melange)
+ (modes melange)
+ (preprocess
+  (pps melange.ppx)))

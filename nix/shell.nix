@@ -9,9 +9,11 @@ pkgs.mkShell {
     dune
     ocaml-lsp
     ocamlformat
+    melange-jest
     merlin
     utop
     odoc
+    pkgs.nodejs_latest
     pkgs.pkg-config
     pkgs.openssl
   ];

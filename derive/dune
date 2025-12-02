@@ -1,0 +1,6 @@
+(library
+ (name ppx_serde_derive)
+ (public_name serde-melange.ppx)
+ (kind ppx_rewriter)
+ (libraries compiler-libs ppxlib serde-melange)
+ (preprocess (pps ppxlib.metaquot)))

@@ -1,0 +1,7 @@
+(library
+ (name serde_json)
+ (public_name serde-melange.json)
+ (libraries serde-melange melange.js)
+ (modes melange)
+ (preprocess
+  (pps melange.ppx)))

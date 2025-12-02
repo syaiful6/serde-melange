@@ -1,0 +1,14 @@
+(dirs :standard \ node_mdoules)
+
+(rule
+  (alias runtest)
+  (deps (alias_rec test)) 
+  (action (run npx jest)))
+
+(rule
+ (alias run-examples)
+ (deps
+  run_examples.sh
+  (alias_rec examples))
+ (action
+  (run ./run_examples.sh)))

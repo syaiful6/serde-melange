@@ -1,0 +1,6 @@
+(melange.emit
+ (target examples)
+ (alias examples)
+ (libraries serde-melange serde-melange.json)
+ (preprocess
+  (pps serde-melange.ppx)))
