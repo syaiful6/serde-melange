@@ -19,6 +19,8 @@ type serializer_state =
   ; parent : serializer_state option
   }
 
+let ( let* ) = Result.bind
+
 module rec Json_serializer :
   (Ser.Serializer with type output = unit and type state = serializer_state) =
 struct
@@ -160,7 +162,7 @@ struct
     let* () = f ctx in
     state.kind <- old_kind;
     let obj = Js.Dict.empty () in
-    List.iter (fun (k, v) -> Js.Dict.set obj k v) !fields;
+    List.iter (fun (k, v) -> Js.Dict.set obj k v) (List.rev !fields);
     let rec_json = Js.Json.object_ obj in
     let wrapper = Js.Dict.empty () in
     Js.Dict.set wrapper cstr_name rec_json;
@@ -175,7 +177,7 @@ struct
     let* () = f ctx in
     state.kind <- old_kind;
     let obj = Js.Dict.empty () in
-    List.iter (fun (k, v) -> Js.Dict.set obj k v) !fields;
+    List.iter (fun (k, v) -> Js.Dict.set obj k v) (List.rev !fields);
     let json = Js.Json.object_ obj in
     set_result state json;
     Ok ()
